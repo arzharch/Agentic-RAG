@@ -1,0 +1,14 @@
+# Core dependencies
+langchain
+langgraph
+langchain-community
+langchain-ollama
+langchain-core
+langchain-huggingface
+
+# Vector store and embeddings
+faiss-cpu
+sentence-transformers
+
+# Utilities
+typing-extensions

@@ -1,0 +1,11 @@
+NODE 3: EVIDENCE GATHERER (ReAct Agent)
+============================================================
+Error in evidence_gatherer_node: 'PromptTemplate' object has no attribute 'messages'
+
+⚠️  Error in evidence_gatherer: Evidence gathering failed: 'PromptTemplate' object has no attribute 'messages'
+
+============================================================
+FINAL RESULTS
+============================================================
+
+⚠️  Error: Evidence gathering failed: 'PromptTemplate' object has no attribute 'messages
