@@ -14,7 +14,7 @@ This project demonstrates a masterclass in modern MVP architecture for AI system
 
 ## 📋 Prerequisites
 
-1.  **Python 3.9+**
+1.  **Python 3.11+**
 2.  A **Google Gemini API Key**. You can get a free key from [Google AI Studio](https://aistudio.google.com/app/apikey).
 
 ## 🚀 Quick Start
