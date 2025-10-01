@@ -1,9 +1,7 @@
-"""
-Main entry point for the LangGraph Agentic RAG system.
-Provides a command-line interface for querying documents.
-"""
-
 import sys
+import os
+import datetime
+import re
 from agent.graph import graph
 from retrieval.vectorstore import vectorstore_manager
 from config import VERBOSE
@@ -74,20 +72,51 @@ def run_query(query: str):
                 print(f"\n⚠️  Error: {last_output['error']}")
                 return
             
+            reasoning = last_output.get("reasoning_trace", "No reasoning trace available.")
+            answer = last_output.get("final_answer", "No answer was generated.")
+
             # Display reasoning trace if available
-            if last_output.get("reasoning_trace"):
+            if reasoning:
                 print("\n📊 REASONING PROCESS:")
                 print("-" * 60)
-                print(last_output['reasoning_trace'])
+                print(reasoning)
                 print()
             
             # Display final answer
-            if last_output.get("final_answer"):
+            if answer:
                 print("\n💡 ANSWER:")
                 print("-" * 60)
-                print(last_output['final_answer'])
-            else:
-                print("\n⚠️  No answer was generated.")
+                print(answer)
+            
+            # --- Save the report ---
+            try:
+                reports_dir = os.path.join(os.getcwd(), "reports")
+                os.makedirs(reports_dir, exist_ok=True)
+
+                slug = re.sub(r'[^\w-]', ' ', query).strip().lower()
+                slug = re.sub(r'[\s-]+', '-', slug)[:50]
+                timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+                filename = f"{timestamp}_{slug}.txt"
+                filepath = os.path.join(reports_dir, filename)
+
+                report_content = (
+                    f"QUERY:\n{query}\n\n"
+                    f"============================================================\n"
+                    f"REASONING PROCESS:\n============================================================\n"
+                    f"{reasoning}\n\n"
+                    f"============================================================\n"
+                    f"FINAL ANSWER:\n============================================================\n"
+                    f"{answer}"
+                )
+
+                with open(filepath, 'w', encoding='utf-8') as f:
+                    f.write(report_content)
+
+                print(f"\n\n✅ Report saved to: {filepath}")
+
+            except Exception as e:
+                print(f"\n\n⚠️  Failed to save report: {e}")
+
         else:
             print("\n⚠️  Graph execution produced no output.")
         
