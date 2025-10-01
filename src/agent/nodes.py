@@ -4,13 +4,13 @@ Each node performs a specific step in the agentic RAG pipeline.
 """
 
 import json
-from langchain_ollama import ChatOllama
+from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import JsonOutputParser, StrOutputParser
 from langchain.agents import AgentExecutor, create_react_agent
 from langchain import hub
 
-from config import LLM_MODEL, LLM_TEMPERATURE, MAX_FILES_TO_EXAMINE, MAX_REACT_ITERATIONS
+from config import LLM_MODEL, LLM_TEMPERATURE, MAX_REACT_ITERATIONS, GEMINI_API_KEY
 from prompts.prompts import (
     QUERY_ANALYZER_PROMPT,
     EVIDENCE_GATHERER_PROMPT, SYNTHESIS_ANALYZER_PROMPT
@@ -37,7 +37,7 @@ def query_analyzer_node(state):
     print("="*60)
     
     try:
-        llm = ChatOllama(model=LLM_MODEL, temperature=LLM_TEMPERATURE)
+        llm = ChatGoogleGenerativeAI(model=LLM_MODEL, temperature=LLM_TEMPERATURE, google_api_key=GEMINI_API_KEY)
         parser = JsonOutputParser()
         prompt = ChatPromptTemplate.from_template(QUERY_ANALYZER_PROMPT)
         chain = prompt | llm | parser
@@ -113,7 +113,7 @@ def evidence_gatherer_node(state):
     print("="*60)
     
     try:
-        llm = ChatOllama(model=LLM_MODEL, temperature=LLM_TEMPERATURE)
+        llm = ChatGoogleGenerativeAI(model=LLM_MODEL, temperature=LLM_TEMPERATURE, google_api_key=GEMINI_API_KEY)
         
         # The ReAct prompt has 'input', 'tools', 'tool_names', 'agent_scratchpad'
         react_prompt = hub.pull("hwchase17/react")
@@ -195,7 +195,7 @@ def synthesis_analyzer_node(state):
     print("="*60)
     
     try:
-        llm = ChatOllama(model=LLM_MODEL, temperature=LLM_TEMPERATURE)
+        llm = ChatGoogleGenerativeAI(model=LLM_MODEL, temperature=LLM_TEMPERATURE, google_api_key=GEMINI_API_KEY)
         prompt = ChatPromptTemplate.from_template(SYNTHESIS_ANALYZER_PROMPT)
         chain = prompt | llm | StrOutputParser()
         

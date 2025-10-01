@@ -4,10 +4,15 @@ Centralizes all configurable parameters for easy adjustment.
 """
 
 import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 # ===== MODEL CONFIGURATION =====
 # Primary LLM for all reasoning tasks
-LLM_MODEL = "mistral"
+LLM_MODEL = "gemini-2.5-flash"
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 LLM_TEMPERATURE = 0.1  # Low temperature for consistent, factual responses
 
 # Embedding model for vector search
