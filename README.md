@@ -54,7 +54,7 @@ The system's genius lies in its efficient, hybrid workflow.
 
 ### Step 1: Query Analysis (Gemini)
 
-- **Technology**: `gemini-pro`
+- **Technology**: `gemini-2.5-flash`
 - **Process**: The high-level reasoning task of understanding the user's intent is delegated to Gemini, which generates a structured analytical breakdown.
 
 ### Step 2: Retrieval Planning (Local FAISS Query)
@@ -64,12 +64,12 @@ The system's genius lies in its efficient, hybrid workflow.
 
 ### Step 3: Evidence Gathering (ReAct Agent)
 
-- **Technology**: `gemini-pro` (Reasoning) + `FAISS` (Tool)
+- **Technology**: `gemini-2.5-flash` (Reasoning) + `FAISS` (Tool)
 - **Process**: Gemini acts as the agent's reasoning core. It intelligently dispatches retrieval jobs to its specialized `vector_search` tool, which in turn queries the local FAISS index. This allows the agent to iteratively and efficiently build a body of evidence.
 
 ### Step 4: Synthesis (Gemini)
 
-- **Technology**: `gemini-pro`
+- **Technology**: `gemini-2.5-flash`
 - **Process**: With the evidence gathered, the final, high-value task of synthesis and analysis is handed to Gemini, which constructs the comprehensive, final answer.
 
 ## ⏱️ Performance
