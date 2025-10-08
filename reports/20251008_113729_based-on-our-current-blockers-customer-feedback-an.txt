@@ -1,0 +1,47 @@
+QUERY:
+based on our current blockers, customer feedback, and technical debt, what should be our top 3 priorities for the next sprint
+
+============================================================
+REASONING PROCESS:
+============================================================
+1.  **Analyze Blockers:** I first reviewed the `team_standup_jan10.txt` for immediate blockers.
+    *   "Waiting for Stripe API credentials from client" (Mike) indicates a dependency related to payment systems.
+    *   "Need final UI mockups for profile page" (Lisa) is a design dependency for a feature.
+    *   "Production database migration scheduled for tonight" (David) is an operational task, not a new sprint priority.
+    *   "Test environment is unstable" (Rachel) impacts development velocity and quality.
+
+2.  **Analyze Customer Feedback:** I then examined `stakeholder_meeting_jan15.txt` for customer feedback.
+    *   "Search performance is #1 complaint" highlights a critical user experience issue.
+    *   "Payment reliability issues causing churn" indicates a direct impact on revenue and customer retention.
+    *   "Bulk operations feature requested by 12 enterprise customers" is a new feature request, but stakeholders explicitly decided to "delay bulk operations to Q2".
+    *   A key decision was made to "Fast-track search optimization".
+
+3.  **Analyze Technical Debt:** I reviewed `technical_debt_analysis.txt` for critical technical debt.
+    *   "Legacy Authentication System" is labeled "CRITICAL" due to "Security vulnerability, blocking new integrations, preventing SSO implementation and compliance certifications" with an "Effort: 3-4 weeks".
+    *   "Database Query Performance" is listed as "HIGH" priority, which is a strong candidate to be linked with search performance issues.
+
+4.  **Synthesize and Prioritize:** I looked for overlaps and high-impact items across all three categories, considering explicit stakeholder decisions.
+
+    *   **Search Performance:** This is the "#1 customer complaint" (from `stakeholder_meeting_jan15.txt`) and stakeholders decided to "Fast-track search optimization" (from `stakeholder_meeting_jan15.txt`). It's also likely linked to the "HIGH" priority "Database Query Performance" technical debt (from `technical_debt_analysis.txt`). This has a clear customer impact and stakeholder directive.
+
+    *   **Legacy Authentication System:** This is a "CRITICAL TECHNICAL DEBT" item with significant impact: "Security vulnerability, blocking new integrations, preventing SSO implementation and compliance certifications" (from `technical_debt_analysis.txt`). Addressing this is fundamental for security, compliance, and future development.
+
+    *   **Payment Reliability:** Customer feedback explicitly states "Payment reliability issues causing churn" (from `stakeholder_meeting_jan15.txt`). This directly impacts revenue and customer trust. The blocker "Waiting for Stripe API credentials from client" (from `team_standup_jan10.txt`) suggests ongoing work or dependencies related to payment systems, reinforcing its relevance.
+
+    *   **Other considerations:** The unstable test environment is important for development efficiency but doesn't have the same direct, critical customer or security impact as the top three. The UI mockups are for a specific feature, not a systemic issue.
+
+5.  **Formulate Top 3:** Based on the synthesis, the three items with the highest combined impact, urgency, and stakeholder emphasis are Search Performance, Legacy Authentication, and Payment Reliability.
+
+============================================================
+FINAL ANSWER:
+============================================================
+Based on the current blockers, customer feedback, and technical debt, the top 3 priorities for the next sprint should be:
+
+1.  **Search Performance Optimization:**
+    *   **Evidence:** Customer feedback analysis identifies "Search performance is #1 complaint" (from `stakeholder_meeting_jan15.txt`). This issue is directly linked to "Database Query Performance," which is listed as a "HIGH" priority technical debt item (from `technical_debt_analysis.txt`). Stakeholders have explicitly decided to "Fast-track search optimization" (from `stakeholder_meeting_jan15.txt`), indicating its critical importance.
+
+2.  **Upgrade Legacy Authentication System:**
+    *   **Evidence:** This is categorized as "CRITICAL TECHNICAL DEBT" due to its severe impact, including being a "Security vulnerability" and "blocking new integrations, preventing SSO implementation and compliance certifications" (from `technical_debt_analysis.txt`). Resolving this is crucial for security, compliance, and enabling future product development, with an estimated "Effort: 3-4 weeks" (from `technical_debt_analysis.txt`).
+
+3.  **Improve Payment Processing Reliability:**
+    *   **Evidence:** Customer feedback highlights "Payment reliability issues causing churn" (from `stakeholder_meeting_jan15.txt`), indicating a direct negative impact on customer retention and revenue. Furthermore, a current blocker involves "Waiting for Stripe API credentials from client, ETA unclear" (from `team_standup_jan10.txt`), which is directly related to the functionality and integration of payment systems. Addressing this will directly mitigate customer churn and improve trust.

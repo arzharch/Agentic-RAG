@@ -1,6 +1,6 @@
-# Hybrid-Model Agentic RAG System: MVP
+# Agentic RAG System
 
-This project demonstrates a masterclass in modern MVP architecture for AI systems. It implements a sophisticated multi-agent RAG pipeline using LangGraph, built on a decoupled, hybrid-model architecture. This design maximizes performance and cost-efficiency by delegating tasks to the most appropriate resource: a fast, local, open-source model for high-volume retrieval and the powerful Gemini for nuanced, complex reasoning.
+It implements a sophisticated multi-agent RAG pipeline using LangGraph, built on a decoupled, hybrid-model architecture. This design maximizes performance and cost-efficiency by delegating tasks to the most appropriate resource: a fast, local, open-source model for high-volume retrieval and the powerful Gemini for nuanced, complex reasoning.
 
 ## 🎯 Architectural Highlights
 
@@ -43,9 +43,10 @@ Place all `.txt` files you want to analyze in the `files_to_work_with/` director
 python src/main.py
 ```
 
-## 🏗️ The Workflow: A Masterclass in Efficiency
-
-The system's genius lies in its efficient, hybrid workflow.
+## Future Scope : 
+By creating a folder to put any file the system can answer most questions regarding it.
+Suppose you clone a git repo of old project - you can relearn forgotten content.
+More applications of this include creating reports from Excel sheets (convert to text format using Python Libraries), understanding Legal Documents and so on. 
 
 ### One-Time Setup: Index Ingestion & Vectorization
 
